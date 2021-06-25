@@ -1,0 +1,29 @@
+===================== Create TABLE=========================
+CREATE TABLE books_by_author (
+author_name TEXT,
+publish_year INT,
+book_id UUID,
+book_name TEXT,
+rating FLOAT,
+PRIMARY KEY((author_name),publish_year,book_id)
+) WITH CLUSTERING ORDER BY (publish_year DESC, book_id ASC);
+
+===================== INSERT VALUES=========================
+INSERT INTO books_by_author (author_name, publish_year, book_id, book_name, 
+rating)
+VALUES('James Patterson',2009, uuid(),'Witch & Wizard',4);
+
+INSERT INTO books_by_author (author_name, publish_year, book_id, book_name, 
+rating)
+VALUES('James Patterson',2008, uuid(),'Cross',4.5);
+
+INSERT INTO books_by_author (author_name, publish_year, book_id, book_name, 
+rating)
+VALUES('James Patterson',2018, uuid(),'The President is Missing',3.5);
+
+===================== READ DATA=============================
+SELECT * FROM books_by_author where author_name='James Patterson' and 
+publish_year < 2009;
+
+SELECT * FROM books_by_author where author_name='James Patterson' and 
+publish_year < 2009 and rating > 4;
